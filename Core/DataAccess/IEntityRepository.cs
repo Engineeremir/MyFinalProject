@@ -1,13 +1,14 @@
-﻿using Entities.Abstract;
+﻿
+using Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace DataAccess.Abstract
+namespace Core.DataAccess //Evrensel katman. Başka katmanları referans almaz
 {
     //IEntity burada sınıflarımızdır.Product,Customer gibi daha sonra bunlara eklenebilecek employee gibi 
-    public interface IEntityRepository<T>  //IEntity olmasını değil sadece iş sınıflarımızı istiyoruz bu yüzden newlenebilir kısıtını da koyalım ki interface olan IEntity olmasın.
+    public interface IEntityRepository<T> where T:class , IEntity ,new() //IEntity olmasını değil sadece iş sınıflarımızı istiyoruz bu yüzden newlenebilir kısıtını da koyalım ki interface olan IEntity olmasın.
     {
         //Operasyonları eklerken tek değişen kısım Tipler demiştik.Genericler sayesinde burda bir T tipi oluşturduğumda istediğim her tipte çalışmama olanak sağlayacak
         //Yukarıda GEneric Typemızın Değişibilir bi tip olduğunu söyledik anca herkes istediğini de vermemeli.Sadece kullanacağımız sınıf türlerini verebilmeliyiz.Bu yüzden içerisini bir Generic Constaint
@@ -28,6 +29,8 @@ namespace DataAccess.Abstract
         void Add(T entity);
         void Update(T entity);
         void Delete(T entity);
+
+        //Veriye erişmek için kullanacağımız metotların evrensel bir kod olması gerekir ki farklı Db lerden de ulaşabileyim diye bu yüzden IEntityRepositoriyi Core daki DataAccess' e taşıdık
 
     }
 }
