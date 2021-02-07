@@ -1,5 +1,6 @@
 ﻿using Core.DataAccess;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,6 +14,21 @@ namespace DataAccess.Abstract
     public interface IProductDal : IEntityRepository<Product> //İş yapan Product sınıfımızın Dal(DataAccessLayer)' ını burda yazacağız 
                                                               //Product ile ilgili yapacağım bütün operasyonlar (Add,Delete,Update,GetAll,..) burdaki interface'de yazılır 
     {
+
+
+
+        List<ProductDetailDto> GetProductDetails();
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         // Interface metotları default olarak publictir.
 
         //------ÖNEMLİ----- ******Aşağıda yazmış olduğumuz kodlar GenericRepositoryDesignPatterni'ni kullanmadan önce idi artık aşağıdaki kodları yazmamıza gerek yok******
